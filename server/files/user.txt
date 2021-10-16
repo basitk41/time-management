@@ -1,0 +1,1 @@
+[{"name":"Basit Ali","email":"b@edu.com.pk","password":"Admin123"},{"name":"Basit Ali","email":"b@info.com","password":"Admin123"}]
