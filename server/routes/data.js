@@ -1,15 +1,21 @@
 const router = require("express").Router();
 const { getData, saveData } = require("../models");
+const auth = require("../middlewares/auth");
 
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   getData("data")
     .then((response) => res.send(response))
     .catch((err) => res.status(404).send(err));
 });
 
 router.post("/", (req, res) => {
-  saveData("data", req.body)
-    .then((response) => res.send(response))
+  getData("data")
+    .then((response) => {
+      response.push(req.body);
+      saveData("data", response)
+        .then((response) => res.send(response))
+        .catch((err) => res.status(500).send(err));
+    })
     .catch((err) => res.status(500).send(err));
 });
 
