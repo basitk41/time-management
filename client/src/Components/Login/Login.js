@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 import styles from "./Login.module.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const handleLogin = () => {
+    axios
+      .post("http://localhost:8000/api/v1/auth/login", { email, password })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        history.push("/dashboard");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className={styles.loginWrap}>
       <div className={styles.formWrap}>
@@ -13,6 +27,8 @@ const Login = () => {
             type="text"
             className={`form-control ${styles.formControl}`}
             placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group mb-3">
@@ -20,9 +36,13 @@ const Login = () => {
             type="password"
             className={`form-control ${styles.formControl}`}
             placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className={styles.loginBtn}>Login</button>
+        <button className={styles.loginBtn} onClick={handleLogin}>
+          Login
+        </button>
         <p>
           If don't have account
           <span>SignUp?</span>
