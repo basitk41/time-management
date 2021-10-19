@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import axios from "../../Services/Axios";
+import { getUsers, logout } from "../../Store/Actions";
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.User.users);
   useEffect(() => {
-    axios
-      .get("/data")
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
+    dispatch(getUsers());
+    //eslint-disable-next-line
   }, []);
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-  };
   return (
     <div>
       <p style={{ textAlign: "right" }}>
-        <Link to="/login" onClick={handleLogout} className="btn btn-info">
+        <Link
+          to="/login"
+          onClick={() => dispatch(logout())}
+          className="btn btn-info"
+        >
           Logout
         </Link>
       </p>
