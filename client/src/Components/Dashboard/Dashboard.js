@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../../Services/Axios";
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    let token = localStorage.getItem("token");
     axios
-      .get("http://localhost:8000/api/v1/data", {
-        headers: {
-          token,
-        },
-      })
+      .get("/data")
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -34,7 +29,7 @@ const Dashboard = () => {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr>
+            <tr key={user.name}>
               <td>{user.name}</td>
               <td>
                 <button className="btn">Edit</button>
