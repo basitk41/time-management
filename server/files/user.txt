@@ -1,1 +1,1 @@
-[{"name":"Basit Ali","email":"b@edu.com.pk","password":"Admin123"},{"name":"Basit Ali","email":"b@info.com","password":"Admin123"}]
+[{"name":"Basit Ali","email":"b@info.com","password":"$2b$10$r9vN2.wZXPPQHLSjThXPNOyY30rAnoHkCFEEW0moxKOblJHm37PqC","id":"$2b$10$r9vN2.wZXPPQHLSjThXPNO/gZNsh05Wbo0aZ1DFLxq4GszsG4H3gO"}]
