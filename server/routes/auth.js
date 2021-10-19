@@ -1,9 +1,13 @@
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
+const bcrypt = require("bcrypt");
 const { getData, saveData } = require("../models");
 
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  req.body.id = await bcrypt.hash(req.body.email, salt);
+  req.body.password = await bcrypt.hash(req.body.password, salt);
   getData("user")
     .then((response) => {
       const user = response.filter((user) => user.email === req.body.email);
@@ -25,16 +29,16 @@ router.post("/register", (req, res) => {
 });
 router.post("/login", (req, res) => {
   getData("user")
-    .then((response) => {
+    .then(async (response) => {
       const user = response.filter((user) => user.email === req.body.email);
       if (user.length === 0) res.status(404).send("Invalid email.");
       else {
-        if (user[0].password === req.body.password) {
+        if (await bcrypt.compare(req.body.password, user[0].password)) {
           const token = jwt.sign({ email: user.email }, "basitk41");
           res.send({
             success: true,
             token,
-            user: _.pick(user[0], ["name", "email"]),
+            user: _.pick(user[0], ["id", "name", "email"]),
           });
         } else res.status(400).send("Incorrect password.");
       }
