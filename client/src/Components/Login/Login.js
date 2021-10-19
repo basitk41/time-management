@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../Services/Axios";
 import { useHistory } from "react-router-dom";
 import styles from "./Login.module.css";
 
@@ -9,7 +9,7 @@ const Login = () => {
   const history = useHistory();
   const handleLogin = () => {
     axios
-      .post("http://localhost:8000/api/v1/auth/login", { email, password })
+      .post("/auth/login", { email, password })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         history.push("/dashboard");
