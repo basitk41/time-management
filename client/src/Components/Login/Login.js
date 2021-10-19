@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import axios from "../../Services/Axios";
 import { useHistory } from "react-router-dom";
 import styles from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../Store/Actions";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const handleLogin = () => {
-    axios
-      .post("/auth/login", { email, password })
-      .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        history.push("/dashboard");
-      })
-      .catch((err) => console.log(err));
-  };
+  const dispatch = useDispatch();
   return (
     <div className={styles.loginWrap}>
       <div className={styles.formWrap}>
@@ -40,7 +33,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className={styles.loginBtn} onClick={handleLogin}>
+        <button
+          className={styles.loginBtn}
+          onClick={() => dispatch(login({ email, password }, history.push))}
+        >
           Login
         </button>
         <p>
