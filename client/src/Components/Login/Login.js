@@ -1,35 +1,55 @@
-import React from 'react';
-import styles from './Login.module.css'
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import styles from "./Login.module.css";
 
 const Login = () => {
-    return (
-        <div className={styles.loginWrap}>
-            <div className={styles.formWrap}>
-                <h3>Login</h3>
-                <div className="form-group mb-3">
-                    <input type="text"
-                    className={`form-control ${styles.formControl}`}
-                    placeholder="Enter Email"
-                    />
-                </div>
-                <div className="form-group mb-3">
-                    <input type="password"
-                    className={`form-control ${styles.formControl}`}
-                    placeholder="Enter Password"
-                    />
-                </div>
-                <button className={styles.loginBtn}>
-                    Login
-                </button>
-                <p>If don't have account 
-                <span>
-                SignUp?
-                </span>
-                 </p>
-            </div>
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const handleLogin = () => {
+    axios
+      .post("http://localhost:8000/api/v1/auth/login", { email, password })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        history.push("/dashboard");
+      })
+      .catch((err) => console.log(err));
+  };
+  return (
+    <div className={styles.loginWrap}>
+      <div className={styles.formWrap}>
+        <h1>
+          <b>Login</b>
+        </h1>
+        <div className="form-group mb-3">
+          <input
+            type="text"
+            className={`form-control ${styles.formControl}`}
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-    )
-}
+        <div className="form-group mb-3">
+          <input
+            type="password"
+            className={`form-control ${styles.formControl}`}
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className={styles.loginBtn} onClick={handleLogin}>
+          Login
+        </button>
+        <p>
+          If don't have account
+          <span>SignUp?</span>
+        </p>
+      </div>
+    </div>
+  );
+};
 
-export default Login
+export default Login;
