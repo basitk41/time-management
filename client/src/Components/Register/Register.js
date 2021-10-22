@@ -1,8 +1,59 @@
-import React from "react";
+import React,{useState} from "react";
+import styles from './Register.module.css'
+import { Link } from "react-router-dom";
 const Register = () => {
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
-    <div>
-      <h1>Register</h1>
+    <div className={styles.Register}>
+      <div className={styles.registerWrap}>
+          <h1>SignUp</h1>
+          <div className="form-group mb-3 mt-4">
+          <input
+            type="text"
+            className={`form-control ${styles.formControl}`}
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+          <div className="form-group mb-3">
+          <input
+            type="text"
+            className={`form-control ${styles.formControl}`}
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+          <div className="form-group mb-3">
+          <input
+            type="text"
+            className={`form-control ${styles.formControl}`}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+          <div className="form-group mb-3">
+          <input
+            type="text"
+            className={`form-control ${styles.formControl}`}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className={styles.btn}>SignUp</button>
+        <p>
+          If already have account 
+          <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };
