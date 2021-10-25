@@ -12,6 +12,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
@@ -25,4 +26,3 @@ client/package-lock.json
 server/package-lock.json
 client/node_modules
 server/node_modules
-server/package-lock.json

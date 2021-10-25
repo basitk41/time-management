@@ -31,10 +31,13 @@ router.post("/login", (req, res) => {
   getData("user")
     .then(async (response) => {
       const user = response.filter((user) => user.email === req.body.email);
-      if (user.length === 0) res.status(404).send("Invalid email.");
+      if (user.length === 0) res.status(400).send("Invalid email.");
       else {
         if (await bcrypt.compare(req.body.password, user[0].password)) {
-          const token = jwt.sign({ email: user.email }, "basitk41");
+          const token = jwt.sign(
+            { id: user[0].id, email: user[0].email },
+            process.env.jwtPrivateKey
+          );
           res.send({
             success: true,
             token,
