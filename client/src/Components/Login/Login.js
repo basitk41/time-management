@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../Store/Actions";
@@ -41,7 +41,7 @@ const Login = () => {
         </button>
         <p>
           If don't have account
-          <span>SignUp?</span>
+          <Link to="/register">Sign up</Link>
         </p>
       </div>
     </div>
