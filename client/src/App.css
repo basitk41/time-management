@@ -19,3 +19,6 @@
     transform: rotate(360deg);
   }
 }
+.Toastify__close-button {
+  width: 23px;
+}

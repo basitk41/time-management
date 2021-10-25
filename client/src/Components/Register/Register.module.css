@@ -1,28 +1,40 @@
-.Register{
-    background-image: linear-gradient(
-90deg, rgb(106, 33, 223), rgb(209, 51, 230));
-    height: 100vh;
-    padding-top: 120px;
+.Register {
+  background-image: linear-gradient(
+    90deg,
+    rgb(106, 33, 223),
+    rgb(209, 51, 230)
+  );
+  height: 100vh;
+  padding-top: 120px;
 }
-.registerWrap{
-    max-width: 410px;
-    margin: 0 auto;
-    padding: 72px 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.registerWrap {
+  max-width: 410px;
+  margin: 0 auto;
+  padding: 72px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.btn{
-    border: none;
-    font-weight: bold; 
-    background-image: linear-gradient(
-    90deg, rgb(209, 51, 230), rgb(106, 33, 223), rgb(9, 204, 204));
-    border-radius: 15px;
-    height: 2.5rem;
-    color: whitesmoke;
-    margin-bottom: 25px;
+.btn {
+  border: none;
+  font-weight: bold;
+  background-image: linear-gradient(
+    90deg,
+    rgb(209, 51, 230),
+    rgb(106, 33, 223),
+    rgb(9, 204, 204)
+  );
+  border-radius: 15px;
+  height: 2.5rem;
+  color: whitesmoke;
+  margin-bottom: 25px;
 }
-p a{
-    padding-left: 7px
-    ;
+p a {
+  padding-left: 7px;
+}
+.errorMessage {
+  color: red;
+  text-align: left;
+  margin-top: 10px;
+  display: block;
 }
