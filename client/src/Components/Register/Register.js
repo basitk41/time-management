@@ -9,8 +9,9 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [valid, setValid] = useState(false);
   const dispatch = useDispatch();
-  const handleClick = () => {
+  const handleSubmit = () => {
     if (name && email && password) {
+      dispatch(register({ name, email, password }));
       setValid(false);
       setName("");
       setEmail("");
@@ -63,13 +64,7 @@ const Register = () => {
             <span className={styles.errorMessage}>Please enter password *</span>
           ) : null}
         </div>
-        <button
-          className={styles.btn}
-          onClick={() => {
-            dispatch(register({ name, email, password }));
-            handleClick();
-          }}
-        >
+        <button className={styles.btn} onClick={handleSubmit}>
           Sign up
         </button>
         <p>
