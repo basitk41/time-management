@@ -12,6 +12,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
@@ -24,4 +25,8 @@ yarn-error.log*
 client/package-lock.json
 server/package-lock.json
 client/node_modules
+<<<<<<< HEAD
+server/package-lock.json
+=======
 server/node_modules
+>>>>>>> baf2b69f45ceeb7ab2f3751618be3f0de5221f15
